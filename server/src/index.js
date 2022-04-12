@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-const URL = process.env.MONGO_URL;
+const URL = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/Mern-Crud-DB";
 mongoose
   .connect(URL, {
     useNewUrlParser: true,
@@ -27,5 +27,5 @@ mongoose
 const postRouter = require("./routes/Posts");
 app.use("/api/v1/posts", postRouter);
 
-const port = process.env.PORT;
+const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

@@ -6,7 +6,8 @@ const Posts = new Schema({
     type: String,
   },
   image: {
-    type: String,
+    data: Buffer,
+    contentType: String,
   },
   description: {
     type: String,
