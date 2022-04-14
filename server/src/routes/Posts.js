@@ -1,31 +1,24 @@
 const express = require("express");
 const PM = require("../models/Posts");
-/*
-  Multer sem gridfs
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
-*/
 
 const router = express.Router();
 
-/*
-  Multer sem gridfs
-
-  const storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads");
+    cb(null, path.join(__dirname, "../../uploads"));
   },
   filename: (req, file, cb) => {
-    cb(null, file.fieldname + "-" + Date.now());
+    cb(null, file.filename + "-" + Date.now());
   },
 });
 
 const upload = multer({ storage: storage });
-*/
 
 router.get("/all-posts", (req, res) => {
-  PM.find({}).then((posts) => {
+  PM.find().then((posts) => {
     res.send(posts);
   });
 });
@@ -36,28 +29,19 @@ router.get("/single-post/:_id", (req, res) => {
   });
 });
 
-/*
-  Multer sem gridfs
-router.post("/upload-post", upload.single("image"), (req, res) => {
+router.post("/upload-post", upload.single("images"), (req, res) => {
   var obj = {
     title: req.body.title,
     image: {
-      data: fs.readFileSync(
-        path.join(__dirname + "/uploads" + req.file.filename)
-      ),
+      data: path.join(__dirname + "../../uploads/" + req.file.filename),
       contentType: "image/png",
     },
     description: req.body.description,
   };
-  PM.create(obj, (err, item) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.redirect("/");
-    }
+  PM.create(obj).then((post) => {
+    res.send(post);
   });
 });
-*/
 
 router.post("/create-post", (req, res) => {
   PM.create(req.body).then((post) => {
