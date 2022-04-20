@@ -1,39 +1,18 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import axios from "axios";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Home from "./screens/Home";
+import Criar from "./screens/Criar";
 
 export default function App() {
-  const [data, setData] = React.useState([]);
-
-  React.useEffect(() => {
-    axios.get("http://localhost:4000/api/v1/posts/all-posts").then((res) => {
-      setData(res.data);
-      console.log(data);
-    });
-  }, []);
+  const Stack = createNativeStackNavigator();
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-      <View>
-        {/* {data.map((x) => {
-          <View key={x._id}>
-            <Text>{x.title}</Text>
-            <Text>{x.image.data}</Text>
-          </View>;
-        })} */}
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Criar" component={Criar} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
