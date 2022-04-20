@@ -1,21 +1,22 @@
 const express = require("express");
 const PM = require("../models/Posts");
-const multer = require("multer");
-const fs = require("fs");
-const path = require("path");
+// const multer = require("multer");
+// const fs = require("fs");
+// const path = require("path");
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../../uploads"));
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.filename + "-" + Date.now());
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, path.join(__dirname, "../../uploads"));
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, file.originalname /*+ "-" + Date.now()*/);
+//     console.log(file);
+//   },
+// });
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
 router.get("/all-posts", (req, res) => {
   PM.find().then((posts) => {
@@ -29,19 +30,19 @@ router.get("/single-post/:_id", (req, res) => {
   });
 });
 
-router.post("/upload-post", upload.single("images"), (req, res) => {
-  var obj = {
-    title: req.body.title,
-    image: {
-      data: path.join(__dirname + "../../uploads/" + req.file.filename),
-      contentType: "image/png",
-    },
-    description: req.body.description,
-  };
-  PM.create(obj).then((post) => {
-    res.send(post);
-  });
-});
+// router.post("/upload-post", upload.single("image"), (req, res) => {
+//   var obj = {
+//     title: req.body.title,
+//     image: {
+//       data: path.join(__dirname + "../../uploads/" + req.file.filename),
+//       contentType: "image/png",
+//     },
+//     description: req.body.description,
+//   };
+//   PM.create(obj).then((post) => {
+//     res.send(post);
+//   });
+// });
 
 router.post("/create-post", (req, res) => {
   PM.create(req.body).then((post) => {
