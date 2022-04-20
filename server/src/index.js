@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-const URL = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/Mern-Crud-DB";
+const URL = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/Mern-Crud-DB";
 mongoose
   .connect(URL, {
     useNewUrlParser: true,
