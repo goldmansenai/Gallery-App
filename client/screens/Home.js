@@ -7,61 +7,57 @@ import {
   ScrollView,
   StatusBar,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import axios from "axios";
-import baseUrl from "../utils/api";
 
 function Home({ navigation }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${baseUrl}/all-posts`)
+      .get(`https://gallery-rn.herokuapp.com/api/v1/posts/all-posts`)
       .then((res) => {
         setData(res.data);
-        console.log(res.data)
-      })
-      .catch((err) => {
-        console.log(err);
       });
   }, []);
 
   return (
     <View>
       <Text>Home Page</Text>
-      <Button title="Criar" onPress={() => navigation.navigate("Criar")} />
       <View style={styles.container}>
         <ScrollView>
           {/* TODOS OS POSTS  */}
           <View style={styles.containerCards}>
             {data.map((x) => {
-              <View key={x._id} style={styles.conteudo}>
-                <View key={x._id} style={styles.card}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      handleDetailPress(x._id);
-                    }}
-                  >
-                    <Image source={{ uri: x.image }} style={styles.img} />
-                  </TouchableOpacity>
+              return (
+                <View key={x._id} style={styles.conteudo}>
+                  <View key={x._id} style={styles.card}>
+                    <TouchableOpacity
+                    //   onPress={() => {
+                    //     handleDetailPress(x._id);
+                    //   }}
+                    >
+                      <Image source={{ uri: x.image }} style={styles.img} />
+                    </TouchableOpacity>
 
-                  <Text style={styles.txt}>{x.title}</Text>
+                    <Text style={styles.txt}>{x.title}</Text>
+                  </View>
                 </View>
-              </View>;
+              );
             })}
           </View>
           <StatusBar style="auto" />
         </ScrollView>
       </View>
-
-      {/* <View>
+      <View>
         <TouchableOpacity
           style={styles.add_btn}
           onPress={() => navigation.navigate("Criar")}
         >
           <Text>Add</Text>
         </TouchableOpacity>
-      </View> */}
+      </View>
     </View>
   );
 }
