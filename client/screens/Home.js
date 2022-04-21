@@ -16,9 +16,7 @@ function Home({ navigation }) {
 
   useEffect(() => {
     axios
-      .get(
-        /*`https://gallery-rn.herokuapp.com/api/v1/posts/all-posts`*/ "http://localhost:4000/api/v1/posts/all-posts"
-      )
+      .get(`https://gallery-rn.herokuapp.com/api/v1/posts/all-posts`)
       .then((res) => {
         setArrayData(res.data);
       });

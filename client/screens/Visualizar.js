@@ -20,7 +20,7 @@ function Visualizar({ route, navigation }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/v1/posts/single-post/${id}`)
+      .get(`https://gallery-rn.herokuapp.com/api/v1/posts/single-post/${id}`)
       .then((res) => {
         setPost(res.data);
       });
@@ -50,7 +50,9 @@ function Visualizar({ route, navigation }) {
 
     if (confirm) {
       axios
-        .delete(`http://localhost:4000/api/v1/posts/delete-post/${id}`)
+        .delete(
+          `https://gallery-rn.herokuapp.com/api/v1/posts/delete-post/${id}`
+        )
         .then(() => {
           navigation.navigate("Home");
         });

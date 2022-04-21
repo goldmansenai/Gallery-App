@@ -26,10 +26,7 @@ function Criar({ navigation }) {
         description: description,
       };
       axios
-        .post(
-          /*`https://gallery-rn.herokuapp.com/api/v1/posts/create-post`*/ "http://localhost:4000/api/v1/posts/create-post",
-          data
-        )
+        .post(`https://gallery-rn.herokuapp.com/api/v1/posts/create-post`, data)
         .then(() => navigation.navigate("Home"));
     }
   };

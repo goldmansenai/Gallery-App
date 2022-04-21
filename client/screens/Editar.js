@@ -16,7 +16,10 @@ export default function Editar({ route, navigation }) {
       description: description,
     };
     axios
-      .put(`http://localhost:4000/api/v1/posts/update-post/${id}`, data)
+      .put(
+        `https://gallery-rn.herokuapp.com/api/v1/posts/update-post/${id}`,
+        data
+      )
       .then(() => {
         navigation.navigate("Galeria");
       });
