@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
+import baseUrl from "../utils/api";
 
 function Criar({ navigation }) {
   const [title, setTitle] = useState("");
@@ -40,9 +41,7 @@ function Criar({ navigation }) {
         image: image,
         description: description,
       };
-      axios
-        .post(`https://gallery-rn.herokuapp.com/api/v1/posts/create-post`, data)
-        .then(() => navigation.navigate("Home"));
+      axios.post(`${baseUrl}/create-post`, data).then(() => navigation.navigate("Home"));
     }
   };
 
