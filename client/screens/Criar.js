@@ -9,31 +9,16 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
 
 function Criar({ navigation }) {
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
 
-  const selectFile = async () => {
-    try {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
-      setImage(result.uri);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleCreatePress = () => {
-    if (title === "" || image === null || description === "") {
-      console.log("Erro");
+    if (title === "" || image === "" || description === "") {
+      console.log("Campos nao podem ser nulos");
     } else {
       const data = {
         title: title,
@@ -41,7 +26,10 @@ function Criar({ navigation }) {
         description: description,
       };
       axios
-        .post(`https://gallery-rn.herokuapp.com/api/v1/posts/create-post`, data)
+        .post(
+          /*`https://gallery-rn.herokuapp.com/api/v1/posts/create-post`*/ "http://localhost:4000/api/v1/posts/create-post",
+          data
+        )
         .then(() => navigation.navigate("Home"));
     }
   };
@@ -64,38 +52,16 @@ function Criar({ navigation }) {
             </View>
 
             {/* DIV IMAGEM */}
-            {image === null ? (
-              <View style={styles.image}>
-                <Text style={{ fontSize: 25, marginBottom: 2 }}>Imagem</Text>
-                <TouchableOpacity style={styles.add} onPress={selectFile}>
-                  <Text style={{ fontSize: 20, color: "#FFF" }}>
-                    Selecionar arquivo
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            ) : (
-              <View>
-                <Text style={{ fontSize: 25, marginBottom: 2 }}>
-                  Imagem Selecionada
-                </Text>
-                <View style={styles.selectedImage}>
-                  <Image
-                    style={{ width: 50, height: 50, marginRight: 20 }}
-                    source={{ uri: image }}
-                  />
-                  <TouchableOpacity
-                    onPress={() => {
-                      setImage(null);
-                    }}
-                  >
-                    <Image
-                      style={{ width: 50, height: 50 }}
-                      source={require("../img/delete.png")}
-                    />
-                  </TouchableOpacity>
-                </View>
-              </View>
-            )}
+            <View style={styles.title}>
+              <Text style={{ fontSize: 25, marginBottom: 2 }}>Título</Text>
+              <TextInput
+                placeholder="https://google.com"
+                style={styles.inputs}
+                onChange={(e) => {
+                  setImage(e.target.value);
+                }}
+              ></TextInput>
+            </View>
 
             {/* DIV DESCRIÇÃO */}
             <View style={styles.desc}>

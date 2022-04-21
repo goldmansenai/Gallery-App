@@ -12,15 +12,21 @@ import {
 import axios from "axios";
 
 function Home({ navigation }) {
-  const [data, setData] = useState([]);
+  const [arrayData, setArrayData] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`https://gallery-rn.herokuapp.com/api/v1/posts/all-posts`)
+      .get(
+        /*`https://gallery-rn.herokuapp.com/api/v1/posts/all-posts`*/ "http://localhost:4000/api/v1/posts/all-posts"
+      )
       .then((res) => {
-        setData(res.data);
+        setArrayData(res.data);
       });
   }, []);
+
+  const handleDetailPress = (id) => {
+    navigation.navigate("Visualizar", { id: id });
+  };
 
   return (
     <View>
@@ -29,14 +35,14 @@ function Home({ navigation }) {
         <ScrollView>
           {/* TODOS OS POSTS  */}
           <View style={styles.containerCards}>
-            {data.map((x) => {
+            {arrayData.map((x) => {
               return (
                 <View key={x._id} style={styles.conteudo}>
                   <View key={x._id} style={styles.card}>
                     <TouchableOpacity
-                    //   onPress={() => {
-                    //     handleDetailPress(x._id);
-                    //   }}
+                      onPress={() => {
+                        handleDetailPress(x._id);
+                      }}
                     >
                       <Image source={{ uri: x.image }} style={styles.img} />
                     </TouchableOpacity>
