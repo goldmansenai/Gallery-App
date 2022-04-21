@@ -21,7 +21,7 @@ export default function Editar({ route, navigation }) {
         data
       )
       .then(() => {
-        navigation.navigate("Galeria");
+        navigation.navigate("Home");
       });
   }
   return (
