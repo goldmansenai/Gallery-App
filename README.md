@@ -54,26 +54,23 @@ e o cliente com:
 expo start
 ```
 
-<!-- ## Demo
+## Demo
 <p>
-AppList:
+Home:
 </p>
-<img src="./assets/pg_inicial.png"/>
+<img src="./assets/Home.jpg"/>
 <p>
-AppForm:
+Criar:
 </p>
-<img src="./assets/pg_form.png"/>
+<img src="./assets/Criar.jpg"/>
 <p>
-Conteúdo em AppList:
+Conteúdo em Home:
 </p>
-<img src="./assets/churrasco-1.png"/>
-<img src="./assets/churrasco-2.png"/>
-<img src="./assets/churrasco-3.png"/>
+<img src="./assets/Home02.jpg"/>
 <p>
-Deletar conteúdo:
+Visualizar:
 </p>
-<img src="./assets/churrasco-delete.png"/>
-<img src="./assets/pg_inicial.png"/> -->
+<img src="./assets/Visualizar.jpg"/>
 
 ## Autores
 
@@ -90,6 +87,7 @@ Deletar conteúdo:
 [expo-status-bar]: https://img.shields.io/badge/Expo_Status_Bar-~1.2.0-blue?style=for-the-badge
 [react-native]: https://img.shields.io/badge/React_Native-~0.64.3-blue?style=for-the-badge
 [react-navigation]: https://img.shields.io/badge/React_Navigation-~6.x-blue?style=for-the-badge
+[node-js]: https://img.shields.io/badge/NodeJS-^14.17.6-blue?style=for-the-badge
 [express]: https://img.shields.io/badge/Express-^4.17.3-blue?style=for-the-badge
 [mongodb]: https://img.shields.io/badge/MongoDB-5.0.8-blue?style=for-the-badge
 [mongoose]: https://img.shields.io/badge/Mongoose-^6.2.8-blue?style=for-the-badge
