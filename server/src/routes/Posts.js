@@ -1,21 +1,35 @@
 const express = require("express");
 const PM = require("../models/Posts");
-// const multer = require("multer");
-// const fs = require("fs");
-// const path = require("path");
+const multer = require("multer");
+const fs = require("fs");
+const path = require("path");
 
 const router = express.Router();
 
-/* const storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname + "../../uploads/"));
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname /* + "-" + Date.now());
+    cb(null, Date.now() + "-" + file.originalname);
   },
-}); 
+});
 
-const upload = multer({ storage: storage }); */
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5,
+  },
+  fileFilter: fileFilter,
+});
 
 router.get("/all-posts", (req, res) => {
   PM.find().then((posts) => {
@@ -29,30 +43,17 @@ router.get("/single-post/:_id", (req, res) => {
   });
 });
 
-/* router.post("/upload-post", upload.single("image"), (req, res) => {
+router.post("/upload-post", upload.single("image"), (req, res) => {
+  console.log(req.file);
   var obj = {
     title: req.body.title,
-    image: {
-      data: path.join(__dirname + "../../uploads/" + req.file.filename),
-      contentType: "image/png",
-    },
+    image: "http://localhost:8887/" + req.file.filename,
     description: req.body.description,
   };
-  // PM.find().then((posts) => {
-  //   var data = new Buffer.from(posts[0].image.data);
-  //   fs.writeFile(req.file.filename, data, "binary", (err) => {
-  //     if (err) {
-  //       console.log("There was an error writing the image");
-  //     } else {
-  //       console.log("The sheel file was written: ");
-  //     }
-  //     console.log(posts[0]);
-  //   });
-  // });
   PM.create(obj).then((post) => {
     res.send(post);
   });
-}); */
+});
 
 router.post("/create-post", (req, res) => {
   PM.create(req.body).then((post) => {
