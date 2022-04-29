@@ -35,14 +35,14 @@ Acesse a pasta server e instale as dependências:
 cd Gallery-App && cd server && yarn install
 ```
 
-Saia da pasta server e em seguida crie uma pasta chamanda "client":
+Saia da pasta server e em seguida clone a parte visual do projeto:
 ```
-cd .. && mkdir client
+cd .. && git clone https://github.com/ViniciusNB/gallery.git && 
 ```
 
-Em seguida acesse o client e clone a parte visual do projeto:
+Em seguida acesse o client e instale as dependências:
 ```
-cd client && git clone https://github.com/ViniciusNB/gallery.git && npm install
+cd gallery && npm install
 ```
 
 Após os passos acima, você pode rodar o servidor com:

@@ -1,7 +1,6 @@
 const express = require("express");
 const PM = require("../models/Posts");
 const multer = require("multer");
-const fs = require("fs");
 const path = require("path");
 
 const router = express.Router();
@@ -44,7 +43,6 @@ router.get("/single-post/:_id", (req, res) => {
 });
 
 router.post("/upload-post", upload.single("image"), (req, res) => {
-  console.log(req.file);
   var obj = {
     title: req.body.title,
     image: "http://localhost:8887/" + req.file.filename,
