@@ -1,5 +1,5 @@
 <p align="center">
-<h1>Churras App</h1> 
+<h1>Gallery App</h1> 
 <img src="./assets/gallery.jpg" />
 </p>
 
@@ -11,7 +11,7 @@ Projeto feito com React Native para a parte visual, NodeJS e Express para back-e
 
 ## Tecnologias
 
-O Churras App faz uso de:
+A Gallery App faz uso de:
 
 * ![Expo][expo]
 * ![Expo-Cli][expo-cli]
@@ -37,17 +37,23 @@ cd Gallery-App && cd server && yarn install
 
 Saia da pasta server e em seguida clone a parte visual do projeto:
 ```
-cd .. && git clone https://github.com/ViniciusNB/gallery.git && 
+cd .. && git clone https://github.com/ViniciusNB/gallery.git
 ```
 
-Em seguida acesse o client e instale as dependências:
+Entre no visual studio code e altere o arquivo api.js presente na pasta "utils"
+Obs: Você irá precisar de seu IP para alterar o arquivo, para isso, abra o executar (Win + r) e digite "cmd", clique em ok e quando o prompt de comando abrir digite "ipconfig" e pressione enter, anote os números do IPv4 e altere o "api.js"
 ```
-cd gallery && npm install
+cd gallery && code .
+```
+
+Em seguida instale as dependências:
+```
+npm install
 ```
 
 Após os passos acima, você pode rodar o servidor com:
 ```
-yarn run start
+yarn start (ou npm run start)
 ```
 e o cliente com:
 ```
