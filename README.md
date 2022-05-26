@@ -41,7 +41,7 @@ cd .. && git clone https://github.com/ViniciusNB/gallery.git
 ```
 
 Entre no visual studio code e altere o arquivo api.js presente na pasta "utils"
-Obs: Você irá precisar de seu IP para alterar o arquivo, para isso, abra o executar (Win + r) e digite "cmd", clique em ok e quando o prompt de comando abrir digite "ipconfig" e pressione enter, anote os números do IPv4 e altere o "api.js"
+* Obs: Você irá precisar de seu IP para alterar o arquivo, para isso, abra o executar (Win + r) e digite "cmd", clique em ok e quando o prompt de comando abrir digite "ipconfig" e pressione enter, anote os números do IPv4 e altere o "api.js"
 ```
 cd gallery && code .
 ```
